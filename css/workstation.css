@@ -1,0 +1,326 @@
+/* =========================================
+   전기기능사 실습실 예약시스템 V6
+   작업대 전용 스타일
+========================================= */
+
+
+/* 작업대 카드 */
+
+.workstation-card{
+    padding-top:13px;
+    padding-bottom:14px;
+}
+
+
+/* 작업대 제목 오른쪽 상태 안내 */
+
+.workstation-legend{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    font-size:9px;
+    color:#667085;
+}
+
+
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:3px;
+
+    white-space:nowrap;
+}
+
+
+.legend-dot{
+    width:7px;
+    height:7px;
+
+    display:inline-block;
+
+    border-radius:50%;
+}
+
+
+.available-dot{
+    background:#2e7d32;
+}
+
+
+.partial-dot{
+    background:#f4b400;
+}
+
+
+.full-dot{
+    background:#d32f2f;
+}
+
+
+
+/* =========================================
+   작업대 배치
+========================================= */
+
+.workstation-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:7px;
+}
+
+
+
+/* 작업대 기본 버튼 */
+
+.workstation-button{
+    position:relative;
+
+    width:100%;
+    height:42px;
+    padding:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid #b9c8dc;
+    border-radius:9px;
+
+    background:#ffffff;
+    color:#0b3a82;
+
+    font-size:15px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:
+        background .15s ease,
+        border-color .15s ease,
+        color .15s ease,
+        transform .1s ease;
+}
+
+
+.workstation-button:active{
+    transform:scale(.96);
+}
+
+
+
+/* 예약 가능 */
+
+.workstation-button.available{
+    border-color:#9ac7a5;
+
+    background:#f0faf2;
+    color:#256a34;
+}
+
+
+
+/* 오전만 예약 */
+
+.workstation-button.morning-reserved{
+    border-color:#e7bd56;
+
+    background:#fff4ce;
+    color:#8a6100;
+}
+
+
+.workstation-button.morning-reserved::after{
+    content:"오전";
+
+    position:absolute;
+    right:3px;
+    bottom:2px;
+
+    font-size:7px;
+    font-weight:700;
+}
+
+
+
+/* 오후만 예약 */
+
+.workstation-button.afternoon-reserved{
+    border-color:#8db7ef;
+
+    background:#e9f2ff;
+    color:#175cd3;
+}
+
+
+.workstation-button.afternoon-reserved::after{
+    content:"오후";
+
+    position:absolute;
+    right:3px;
+    bottom:2px;
+
+    font-size:7px;
+    font-weight:700;
+}
+
+
+
+/* 오전·오후 각각 예약된 상태 */
+
+.workstation-button.both-reserved{
+    border-color:#e7a5a5;
+
+    background:#ffeaea;
+    color:#b42318;
+}
+
+
+.workstation-button.both-reserved::after{
+    content:"마감";
+
+    position:absolute;
+    right:3px;
+    bottom:2px;
+
+    font-size:7px;
+    font-weight:700;
+}
+
+
+
+/* 하루종일 예약 */
+
+.workstation-button.full-reserved{
+    border-color:#d32f2f;
+
+    background:#d32f2f;
+    color:white;
+}
+
+
+.workstation-button.full-reserved::after{
+    content:"종일";
+
+    position:absolute;
+    right:3px;
+    bottom:2px;
+
+    font-size:7px;
+    font-weight:700;
+}
+
+
+
+/* 현재 선택 */
+
+.workstation-button.selected{
+    border:2px solid #0b3a82;
+
+    background:#0b3a82;
+    color:white;
+
+    box-shadow:0 3px 8px rgba(11,58,130,.24);
+}
+
+
+.workstation-button.selected::after{
+    color:white;
+}
+
+
+
+/* 선택한 시간에 예약 불가 */
+
+.workstation-button.unavailable{
+    cursor:not-allowed;
+    opacity:.58;
+}
+
+
+.workstation-button.unavailable:active{
+    transform:none;
+}
+
+
+
+/* 키보드 포커스 */
+
+.workstation-button:focus-visible{
+    outline:3px solid rgba(11,58,130,.2);
+    outline-offset:2px;
+}
+
+
+
+/* =========================================
+   작은 화면
+========================================= */
+
+@media(max-width:420px){
+
+    .workstation-legend{
+        gap:5px;
+        font-size:8px;
+    }
+
+
+    .legend-dot{
+        width:6px;
+        height:6px;
+    }
+
+
+    .workstation-grid{
+        gap:5px;
+    }
+
+
+    .workstation-button{
+        height:38px;
+
+        border-radius:8px;
+
+        font-size:14px;
+    }
+
+
+    .workstation-button.morning-reserved::after,
+    .workstation-button.afternoon-reserved::after,
+    .workstation-button.both-reserved::after,
+    .workstation-button.full-reserved::after{
+        right:2px;
+        bottom:1px;
+
+        font-size:6px;
+    }
+
+}
+
+
+
+/* =========================================
+   아주 작은 화면
+========================================= */
+
+@media(max-width:350px){
+
+    .workstation-legend{
+        display:none;
+    }
+
+
+    .workstation-grid{
+        gap:4px;
+    }
+
+
+    .workstation-button{
+        height:36px;
+
+        font-size:13px;
+    }
+
+}
+/* V6.4 마감일 작업대 차단 */
+.workstation-button.closed-workstation{background:#e5e7eb!important;border-color:#c4c9d0!important;color:#7a828d!important;opacity:.72;cursor:not-allowed;}

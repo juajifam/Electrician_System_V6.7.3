@@ -1,0 +1,1422 @@
+/* =========================================
+   전기기능사 실습실 예약·관리 시스템 V6.4
+   사용자 화면 공통 스타일
+========================================= */
+
+
+/* =========================================
+   기본 설정
+========================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+
+:root{
+
+    --main:#0b3a82;
+    --main-dark:#07295d;
+    --main-light:#eaf2ff;
+
+    --green:#2e7d32;
+    --green-light:#edf8ef;
+
+    --yellow:#f4b400;
+    --yellow-light:#fff7d8;
+
+    --blue:#1976d2;
+    --blue-light:#e7f1ff;
+
+    --red:#d32f2f;
+    --red-light:#fdecec;
+
+    --background:#eef3f8;
+    --card:#ffffff;
+
+    --text:#222222;
+    --sub-text:#667085;
+
+    --border:#d7dee8;
+
+    --shadow:0 3px 12px rgba(0,0,0,.08);
+
+    --radius:14px;
+
+}
+
+
+html{
+
+    -webkit-text-size-adjust:100%;
+
+}
+
+
+body{
+
+    min-height:100vh;
+
+    padding:10px;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    font-family:
+        Arial,
+        "Noto Sans KR",
+        sans-serif;
+
+}
+
+
+button,
+input,
+select{
+
+    font-family:inherit;
+
+}
+
+
+button{
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.app-container{
+
+    width:100%;
+
+    max-width:580px;
+
+    margin:0 auto;
+
+    padding-bottom:24px;
+
+}
+
+
+
+/* =========================================
+   상단 제목
+========================================= */
+
+.main-header{
+
+    position:relative;
+
+    min-height:104px;
+
+    margin-bottom:12px;
+
+    padding:17px 65px 24px 14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:var(--main);
+
+    color:white;
+
+    border-radius:16px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.main-title{
+
+    width:100%;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    line-height:1.4;
+
+    text-align:center;
+
+    letter-spacing:-.4px;
+
+}
+
+
+.header-button{
+
+    position:absolute;
+
+    top:9px;
+
+    right:9px;
+
+    min-width:52px;
+
+    height:28px;
+
+    padding:0 8px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:white;
+
+    color:var(--main);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.header-button:active{
+
+    transform:scale(.97);
+
+}
+
+
+.creator{
+
+    position:absolute;
+
+    right:11px;
+
+    bottom:7px;
+
+    font-size:10px;
+
+    font-weight:500;
+
+    color:rgba(255,255,255,.9);
+
+}
+
+
+
+/* =========================================
+   공통 카드
+========================================= */
+
+.content-card{
+
+    margin-bottom:12px;
+
+    padding:14px;
+
+    background:var(--card);
+
+    border:1px solid rgba(215,222,232,.75);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.compact-card{
+
+    padding-top:11px;
+
+    padding-bottom:11px;
+
+}
+
+
+.section-title{
+
+    margin-bottom:11px;
+
+    color:var(--main);
+
+    font-size:17px;
+
+    font-weight:700;
+
+}
+
+
+.section-title.no-margin{
+
+    margin-bottom:0;
+
+}
+
+
+.section-heading-row{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:8px;
+
+    margin-bottom:11px;
+
+}
+
+
+
+/* =========================================
+   예약자 정보
+========================================= */
+
+.user-input-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+}
+
+
+.input-group{
+
+    margin-bottom:10px;
+
+}
+
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:5px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#344054;
+
+}
+
+
+.input-group input,
+.input-group select{
+
+    width:100%;
+
+    height:42px;
+
+    padding:0 10px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    background:white;
+
+    color:var(--text);
+
+    font-size:14px;
+
+}
+
+
+.input-group input:focus,
+.input-group select:focus,
+.inline-search input:focus{
+
+    outline:none;
+
+    border-color:var(--main);
+
+    box-shadow:0 0 0 3px rgba(11,58,130,.12);
+
+}
+
+
+
+/* =========================================
+   사용 시간
+========================================= */
+
+.time-slot-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:7px;
+
+}
+
+
+.time-slot{
+
+    min-height:50px;
+
+    padding:6px 3px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:2px;
+
+    border:1px solid #c8d4e5;
+
+    border-radius:10px;
+
+    background:#f8fafc;
+
+    color:#344054;
+
+    cursor:pointer;
+
+}
+
+
+.time-slot strong{
+
+    font-size:13px;
+
+}
+
+
+.time-slot span{
+
+    font-size:10px;
+
+    color:#667085;
+
+    white-space:nowrap;
+
+}
+
+
+.time-slot.selected{
+
+    background:var(--main);
+
+    color:white;
+
+    border-color:var(--main);
+
+}
+
+
+.time-slot.selected span{
+
+    color:rgba(255,255,255,.9);
+
+}
+
+
+
+/* =========================================
+   기본 버튼
+========================================= */
+
+.main-button-row{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:9px;
+
+    margin-top:13px;
+
+}
+
+
+.primary-button,
+.secondary-button,
+.search-button{
+
+    height:44px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.primary-button{
+
+    background:var(--main);
+
+    color:white;
+
+}
+
+
+.primary-button:active{
+
+    background:var(--main-dark);
+
+}
+
+
+.secondary-button{
+
+    background:#e4e7ec;
+
+    color:#344054;
+
+}
+
+
+.small-text-button{
+
+    padding:5px 8px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:var(--main-light);
+
+    color:var(--main);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+
+/* =========================================
+   예약 현황
+========================================= */
+
+.status-summary{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:6px;
+
+    margin-bottom:10px;
+
+}
+
+
+.status-summary span,
+.status-summary .status-count-button{
+
+    min-height:38px;
+
+    padding:7px 4px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:3px;
+
+    background:#f4f7fb;
+
+    border-radius:9px;
+
+    font-size:11px;
+
+    color:#475467;
+
+}
+
+
+.status-summary strong{
+
+    color:var(--main);
+
+    font-size:15px;
+
+}
+
+
+.selected-date-title{
+
+    margin-bottom:8px;
+
+    padding:8px 9px;
+
+    background:var(--main-light);
+
+    border-radius:9px;
+
+    color:var(--main);
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+
+/* =========================================
+   예약 목록
+========================================= */
+
+.compact-reservation-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+
+}
+
+
+.reservation-item{
+
+    padding:9px 10px;
+
+    display:grid;
+
+    grid-template-columns:auto 1fr auto;
+
+    align-items:center;
+
+    gap:8px;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+}
+
+
+.reservation-time-badge{
+
+    min-width:48px;
+
+    padding:5px 6px;
+
+    border-radius:8px;
+
+    text-align:center;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.reservation-time-badge.morning{
+
+    background:#fff5d6;
+
+    color:#9a6700;
+
+}
+
+
+.reservation-time-badge.afternoon{
+
+    background:#e7f1ff;
+
+    color:#175cd3;
+
+}
+
+
+.reservation-time-badge.full{
+
+    background:#ffe4e4;
+
+    color:#b42318;
+
+}
+
+
+.reservation-main-info{
+
+    min-width:0;
+
+}
+
+
+.reservation-main-info strong{
+
+    display:block;
+
+    margin-bottom:2px;
+
+    font-size:13px;
+
+    color:#101828;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.reservation-main-info span{
+
+    display:block;
+
+    font-size:11px;
+
+    color:#667085;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.reservation-station{
+
+    min-width:40px;
+
+    color:var(--main);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    text-align:right;
+
+}
+
+
+.empty-message{
+
+    padding:14px 8px;
+
+    text-align:center;
+
+    color:#98a2b3;
+
+    font-size:12px;
+
+}
+
+
+
+/* =========================================
+   공지사항
+========================================= */
+
+.notice-card{
+
+    border-left:4px solid var(--main);
+
+}
+
+
+.notice-guide{
+
+    padding:4px 8px;
+
+    border-radius:8px;
+
+    background:#fff0f0;
+
+    color:#b42318;
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+
+.notice-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+
+}
+
+
+.notice-item{
+
+    position:relative;
+
+    min-height:38px;
+
+    padding:9px 10px 9px 35px;
+
+    display:flex;
+
+    align-items:center;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:10px;
+
+    background:#f9fbfd;
+
+    color:#344054;
+
+    font-size:12px;
+
+    line-height:1.45;
+
+}
+
+
+.notice-item::before{
+
+    position:absolute;
+
+    left:10px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:18px;
+
+    height:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+
+/* 중요 공지 */
+
+.notice-item.important{
+
+    border-color:#f1b8b8;
+
+    background:#fff1f1;
+
+    color:#912018;
+
+}
+
+
+.notice-item.important::before{
+
+    content:"!";
+
+    background:#d32f2f;
+
+    color:white;
+
+}
+
+
+/* 안내 공지 */
+
+.notice-item.guide{
+
+    border-color:#f0d58a;
+
+    background:#fff9e6;
+
+    color:#725200;
+
+}
+
+
+.notice-item.guide::before{
+
+    content:"✓";
+
+    background:#f4b400;
+
+    color:white;
+
+}
+
+
+/* 일반 공지 */
+
+.notice-item.general{
+
+    border-color:#bdd0e8;
+
+    background:#f0f6ff;
+
+    color:#194d8c;
+
+}
+
+
+.notice-item.general::before{
+
+    content:"i";
+
+    background:#1976d2;
+
+    color:white;
+
+}
+
+
+.notice-empty-message{
+
+    padding:14px 8px;
+
+    text-align:center;
+
+    color:#98a2b3;
+
+    font-size:12px;
+
+}
+
+
+
+/* =========================================
+   나의 예약
+========================================= */
+
+.inline-search{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr 58px;
+
+    gap:6px;
+
+    margin-bottom:10px;
+
+}
+
+
+.inline-search input{
+
+    width:100%;
+
+    min-width:0;
+
+    height:40px;
+
+    padding:0 9px;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    font-size:13px;
+
+}
+
+
+.search-button{
+
+    height:40px;
+
+    padding:0;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:var(--main);
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+.cancel-button{
+
+    height:32px;
+
+    padding:0 8px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:var(--red-light);
+
+    color:var(--red);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+
+/* =========================================
+   공통 상태색
+========================================= */
+
+.text-morning{
+
+    color:#9a6700;
+
+}
+
+
+.text-afternoon{
+
+    color:#175cd3;
+
+}
+
+
+.text-full{
+
+    color:#b42318;
+
+}
+
+
+
+/* =========================================
+   작은 화면
+========================================= */
+
+@media(max-width:420px){
+
+
+    body{
+
+        padding:7px;
+
+    }
+
+
+    .app-container{
+
+        max-width:100%;
+
+    }
+
+
+    .main-header{
+
+        min-height:98px;
+
+        padding:15px 58px 22px 10px;
+
+    }
+
+
+    .main-title{
+
+        font-size:17px;
+
+        line-height:1.4;
+
+    }
+
+
+    .header-button{
+
+        top:8px;
+
+        right:8px;
+
+        min-width:48px;
+
+        height:27px;
+
+        font-size:10px;
+
+    }
+
+
+    .creator{
+
+        right:9px;
+
+        bottom:6px;
+
+        font-size:9px;
+
+    }
+
+
+    .content-card{
+
+        padding:12px;
+
+        margin-bottom:9px;
+
+    }
+
+
+    .section-title{
+
+        font-size:16px;
+
+        margin-bottom:9px;
+
+    }
+
+
+    .user-input-grid{
+
+        gap:7px;
+
+    }
+
+
+    .input-group input,
+    .input-group select{
+
+        height:40px;
+
+        font-size:13px;
+
+    }
+
+
+    .time-slot-grid{
+
+        gap:5px;
+
+    }
+
+
+    .time-slot{
+
+        min-height:46px;
+
+        padding:5px 2px;
+
+    }
+
+
+    .time-slot strong{
+
+        font-size:12px;
+
+    }
+
+
+    .time-slot span{
+
+        font-size:9px;
+
+    }
+
+
+    .status-summary{
+
+        gap:4px;
+
+    }
+
+
+    .status-summary span,
+.status-summary .status-count-button{
+
+        padding:6px 2px;
+
+        font-size:10px;
+
+    }
+
+
+    .status-summary strong{
+
+        font-size:14px;
+
+    }
+
+
+    .notice-item{
+
+        min-height:36px;
+
+        padding:8px 8px 8px 32px;
+
+        font-size:11px;
+
+    }
+
+
+    .notice-item::before{
+
+        left:8px;
+
+        width:17px;
+
+        height:17px;
+
+        font-size:9px;
+
+    }
+
+
+    .inline-search{
+
+        grid-template-columns:1fr 1fr 52px;
+
+        gap:5px;
+
+    }
+
+
+    .search-button{
+
+        font-size:11px;
+
+    }
+
+}
+
+
+
+/* =========================================
+   아주 작은 화면
+========================================= */
+
+@media(max-width:350px){
+
+
+    .main-title{
+
+        font-size:15px;
+
+    }
+
+
+    .user-input-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .inline-search{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .inline-search .search-button{
+
+        width:100%;
+
+    }
+
+
+    .status-summary span,
+.status-summary .status-count-button{
+
+        flex-direction:column;
+
+        gap:1px;
+
+    }
+
+
+    .reservation-item{
+
+        grid-template-columns:auto 1fr;
+
+    }
+
+
+    .cancel-button{
+
+        grid-column:1 / -1;
+
+        width:100%;
+
+    }
+
+}
+/* V6.4.4: 관리자 이동 링크를 기존 버튼과 동일하게 표시 */
+a.header-button {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* V6.6 운영 최적화 */
+.status-count-button{border:0;background:#f4f7fb;color:#475467;font:inherit;padding:7px 4px;border-radius:9px;cursor:pointer;min-height:38px;display:flex;align-items:center;justify-content:center;gap:3px;width:100%}
+.status-count-button:active{transform:scale(.98)}
+.military-id-input-wrap{display:flex;gap:6px;flex:1;min-width:0}
+.military-id-input-wrap input{flex:1;min-width:0}
+.hyphen-input-button{min-width:42px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;font-size:22px;font-weight:700;cursor:pointer}
+
+/* =========================================
+   V6.6.6 COMPACT UI
+   예약자 정보 공간 최적화
+========================================= */
+.user-card{
+    padding:10px 12px;
+}
+.user-card .section-title{
+    margin-bottom:8px;
+    font-size:16px;
+}
+.user-card .user-input-grid{
+    gap:6px 8px;
+}
+.user-card .user-input-grid + .user-input-grid{
+    margin-top:0;
+}
+.user-card .input-group{
+    margin-bottom:4px;
+}
+.user-card .input-group label{
+    margin-bottom:3px;
+    font-size:12px;
+}
+.user-card .input-group input,
+.user-card .input-group select{
+    height:36px;
+    padding:0 8px;
+    border-radius:8px;
+    font-size:13px;
+}
+@media(max-width:380px){
+    .user-card{
+        padding:9px 10px;
+    }
+    .user-card .user-input-grid{
+        gap:5px 7px;
+    }
+    .user-card .input-group input,
+    .user-card .input-group select{
+        height:35px;
+        font-size:12px;
+    }
+}
+
+/* =========================================
+   V6.6.7 예약자 정보 및 달력 UI 통일
+========================================= */
+.user-card .user-input-grid-three{grid-template-columns:0.82fr 1.12fr 1fr;}
+.user-card .user-input-grid-two{grid-template-columns:1fr 1fr;margin-top:1px;}
+@media(max-width:390px){
+    .user-card .user-input-grid-three{grid-template-columns:0.8fr 1.15fr 0.95fr;gap:5px;}
+    .user-card .user-input-grid-three .input-group input,
+    .user-card .user-input-grid-three .input-group select{padding-left:6px;padding-right:6px;font-size:12px;}
+}
+
+
+/* V6.6.8: 제목 정렬 및 가독성 개선 */
+html{font-size:17px;}
+body{font-size:1rem;}
+.main-header{padding-left:64px;padding-right:64px;}
+.main-title{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:0;
+    margin:0;
+    padding:0 2px;
+    font-size:clamp(18px,5.1vw,22px);
+    line-height:1.28;
+    text-align:center;
+    overflow-wrap:anywhere;
+    word-break:keep-all;
+}
+.section-title{font-size:18px;text-align:center;line-height:1.3;}
+.input-group label{font-size:14px;}
+.input-group input,.input-group select{font-size:15px;}
+button,.header-button{font-size:14px;}
+.creator{font-size:11px;}
+@media(max-width:380px){
+    html{font-size:16px;}
+    .main-header{padding-left:56px;padding-right:56px;}
+    .main-title{font-size:clamp(16px,4.8vw,19px);}
+    .section-title{font-size:17px;}
+    .input-group label{font-size:13px;}
+    .input-group input,.input-group select{font-size:14px;}
+    button,.header-button{font-size:12px;}
+}
+
+
+/* =========================================
+   V6.6.9 큰 글씨·한 줄 제목 접근성 개선
+========================================= */
+html{font-size:18px;}
+body{font-size:1.05rem;line-height:1.55;}
+.main-header{
+    min-height:86px;
+    padding:16px 62px 22px 14px;
+}
+.main-title{
+    width:100%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:clip;
+    font-size:clamp(14px,4.2vw,21px);
+    line-height:1.2;
+    letter-spacing:-.55px;
+}
+.section-title{font-size:20px;}
+.input-group label{font-size:15px;}
+.input-group input,.input-group select{font-size:16px;}
+.primary-button,.secondary-button,.search-button,.header-button,.small-text-button{font-size:15px;}
+.status-summary,.reservation-item,.notice-item,.calendar-guide,.mypage-result{font-size:1rem;}
+.creator{font-size:12px;}
+@media(max-width:380px){
+    html{font-size:17px;}
+    body{font-size:1rem;}
+    .main-header{min-height:82px;padding-left:52px;padding-right:52px;}
+    .main-title{font-size:clamp(13px,3.9vw,15px);letter-spacing:-.7px;}
+    .section-title{font-size:19px;}
+    .input-group label{font-size:14px;}
+    .input-group input,.input-group select{font-size:15px;}
+    .primary-button,.secondary-button,.search-button,.header-button,.small-text-button{font-size:14px;}
+}

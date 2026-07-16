@@ -1,0 +1,384 @@
+/* =========================================
+   전기기능사 실습실 예약시스템 V6
+   달력 전용 스타일
+========================================= */
+
+
+/* 달력 카드 */
+
+.calendar-card{
+    padding-bottom:15px;
+}
+
+
+/* 달력 상단 이동 영역 */
+
+.calendar-header{
+    display:grid;
+    grid-template-columns:42px 1fr 42px;
+    align-items:center;
+    gap:8px;
+
+    margin-bottom:10px;
+}
+
+
+.calendar-header h3{
+    color:#1d2939;
+
+    font-size:19px;
+    font-weight:700;
+    text-align:center;
+}
+
+
+.calendar-move-button{
+    width:42px;
+    height:36px;
+
+    border:none;
+    border-radius:9px;
+
+    background:#0b3a82;
+    color:white;
+
+    font-size:24px;
+    line-height:1;
+
+    cursor:pointer;
+}
+
+
+.calendar-move-button:active{
+    transform:scale(.96);
+    background:#07295d;
+}
+
+
+
+/* 요일 표시 */
+
+.calendar-week{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+
+    margin-bottom:5px;
+
+    text-align:center;
+}
+
+
+.calendar-week span{
+    padding:5px 0;
+
+    color:#475467;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+
+.calendar-week .sunday{
+    color:#d32f2f;
+}
+
+
+.calendar-week .saturday{
+    color:#1976d2;
+}
+
+
+
+/* 달력 날짜 영역 */
+
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
+}
+
+
+
+/* 날짜 기본 칸 */
+
+.calendar-day{
+    position:relative;
+
+    min-height:48px;
+    padding:5px 3px 13px;
+
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+
+    border:1px solid #e1e7ef;
+    border-radius:9px;
+
+    background:#f9fbfd;
+    color:#344054;
+
+    font-size:13px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    user-select:none;
+}
+
+
+.calendar-day:hover{
+    background:#eef4ff;
+}
+
+
+.calendar-day.empty{
+    border:none;
+    background:transparent;
+    cursor:default;
+}
+
+
+
+/* 날짜 숫자 */
+
+.calendar-day-number{
+    line-height:1;
+}
+
+
+
+/* 일요일·토요일 */
+
+.calendar-day.sunday{
+    color:#d32f2f;
+}
+
+
+.calendar-day.saturday{
+    color:#1976d2;
+}
+
+
+
+/* 오늘 날짜 */
+
+.calendar-day.today{
+    border:2px solid #0b3a82;
+
+    background:#ffffff;
+    color:#0b3a82;
+}
+
+
+
+/* 선택 날짜 */
+
+.calendar-day.selected{
+    border-color:#0b3a82;
+
+    background:#0b3a82;
+    color:white;
+
+    box-shadow:0 3px 8px rgba(11,58,130,.22);
+}
+
+
+.calendar-day.selected .reservation-count{
+    background:white;
+    color:#0b3a82;
+}
+
+
+
+/* 지난 날짜 */
+
+.calendar-day.past{
+    opacity:.5;
+}
+
+
+.calendar-day.past:not(.selected){
+    background:#f5f6f7;
+}
+
+
+
+/* 예약 건수 */
+
+.reservation-count{
+    position:absolute;
+    left:50%;
+    bottom:3px;
+    transform:translateX(-50%);
+
+    min-width:20px;
+    height:13px;
+    padding:0 4px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:7px;
+
+    background:#eaf2ff;
+    color:#0b3a82;
+
+    font-size:8px;
+    font-weight:700;
+
+    white-space:nowrap;
+}
+
+
+
+/* 예약 상태 색상 */
+
+.calendar-day.low-reservation{
+    background:#edf8ef;
+}
+
+
+.calendar-day.low-reservation .reservation-count{
+    background:#dff2e3;
+    color:#287a3e;
+}
+
+
+.calendar-day.medium-reservation{
+    background:#fff8df;
+}
+
+
+.calendar-day.medium-reservation .reservation-count{
+    background:#ffefb5;
+    color:#8a6100;
+}
+
+
+.calendar-day.full-reservation{
+    border-color:#f0b3b3;
+    background:#fff0f0;
+}
+
+
+.calendar-day.full-reservation .reservation-count{
+    background:#ffd9d9;
+    color:#b42318;
+}
+
+
+
+/* 예약 마감 날짜 */
+
+.calendar-day.disabled{
+    cursor:not-allowed;
+    opacity:.58;
+}
+
+
+.calendar-day.disabled:hover{
+    background:inherit;
+}
+
+
+
+/* 작은 화면 */
+
+@media(max-width:420px){
+
+    .calendar-header{
+        grid-template-columns:38px 1fr 38px;
+        margin-bottom:8px;
+    }
+
+
+    .calendar-header h3{
+        font-size:17px;
+    }
+
+
+    .calendar-move-button{
+        width:38px;
+        height:34px;
+        font-size:22px;
+    }
+
+
+    .calendar-week span{
+        padding:4px 0;
+        font-size:11px;
+    }
+
+
+    .calendar-grid{
+        gap:4px;
+    }
+
+
+    .calendar-day{
+        min-height:44px;
+        padding:5px 2px 12px;
+
+        border-radius:8px;
+
+        font-size:12px;
+    }
+
+
+    .reservation-count{
+        bottom:3px;
+
+        min-width:18px;
+        height:12px;
+
+        font-size:7px;
+    }
+
+}
+
+
+
+/* 아주 작은 화면 */
+
+@media(max-width:350px){
+
+    .calendar-grid{
+        gap:3px;
+    }
+
+
+    .calendar-day{
+        min-height:40px;
+        padding-top:4px;
+
+        font-size:11px;
+    }
+
+
+    .reservation-count{
+        padding:0 3px;
+        font-size:7px;
+    }
+
+}
+/* V6.4 예약 마감 날짜 */
+.calendar-day.closed-date{background:#e5e7eb;border-color:#9ca3af;color:#6b7280;}
+.calendar-day.closed-date.selected{background:#6b7280;border-color:#4b5563;color:#fff;}
+.calendar-day.closed-date .reservation-count{display:none;}
+.closure-badge{position:absolute;left:50%;bottom:3px;transform:translateX(-50%);font-size:7px;white-space:nowrap;font-weight:700;}
+.closure-date-notice{margin-top:10px;padding:10px;border-radius:9px;background:#f2f4f7;color:#475467;font-size:13px;font-weight:700;text-align:center;}
+
+/* =========================================
+   V6.6.7 사용자·관리자 달력 공통 시각 기준
+========================================= */
+.calendar-day.today{border:2px solid #0b3a82;background:#fff;color:#0b3a82;box-shadow:none;}
+.calendar-day.selected,
+.calendar-day.selected.today{border:2px solid #e27722;background:#fff3e8;color:#7a3100;box-shadow:0 0 0 2px rgba(226,119,34,.13);}
+.calendar-day.selected.low-reservation,
+.calendar-day.selected.medium-reservation,
+.calendar-day.selected.full-reservation{background:#fff3e8;color:#7a3100;}
+.calendar-day.selected .reservation-count,
+.calendar-day.selected.low-reservation .reservation-count,
+.calendar-day.selected.medium-reservation .reservation-count,
+.calendar-day.selected.full-reservation .reservation-count{background:#e27722;color:#fff;}

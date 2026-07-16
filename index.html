@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#0b3a82" name="theme-color"/>
+<title>
+        전기기능사 실습실 예약·관리 시스템
+    </title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/calendar.css" rel="stylesheet"/>
+<link href="css/workstation.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app-container">
+<!-- ==============================
+         사용자 화면 헤더
+    =============================== -->
+<header class="main-header">
+<h1 class="main-title">⚡ 전기기능사 실습실 예약·관리 시스템</h1>
+<a class="header-button" href="admin.html" id="adminMoveBtn" role="button">
+            관리자
+        </a>
+<span class="creator">
+            제작자 장준구
+        </span>
+</header>
+<main>
+<!-- ==============================
+             예약자 정보
+        =============================== -->
+<section class="content-card user-card">
+<h2 class="section-title">
+                예약자 정보
+            </h2>
+<div class="user-input-grid user-input-grid-three"><div class="input-group">
+<label for="rank">
+                        계급
+                    </label>
+<select id="rank">
+<option value="">
+                            계급 선택
+                        </option>
+<optgroup label="병사">
+<option value="이병">
+                                이병
+                            </option>
+<option value="일병">
+                                일병
+                            </option>
+<option value="상병">
+                                상병
+                            </option>
+<option value="병장">
+                                병장
+                            </option>
+</optgroup>
+<optgroup label="부사관">
+<option value="하사">
+                                하사
+                            </option>
+<option value="중사">
+                                중사
+                            </option>
+<option value="중사(진)">
+                                중사(진)
+                            </option>
+<option value="상사">
+                                상사
+                            </option>
+<option value="상사(진)">
+                                상사(진)
+                            </option>
+<option value="원사">
+                                원사
+                            </option>
+<option value="원사(진)">
+                                원사(진)
+                            </option>
+<option value="준위">
+                                준위
+                            </option>
+</optgroup>
+<optgroup label="장교">
+<option value="소위">
+                                소위
+                            </option>
+<option value="중위">
+                                중위
+                            </option>
+<option value="대위">
+                                대위
+                            </option>
+<option value="소령">
+                                소령
+                            </option>
+<option value="중령">
+                                중령
+                            </option>
+<option value="대령">
+                                대령
+                            </option>
+</optgroup>
+<optgroup label="군무원">
+<option value="9급">
+                                9급
+                            </option>
+<option value="8급">
+                                8급
+                            </option>
+<option value="7급">
+                                7급
+                            </option>
+<option value="6급">
+                                6급
+                            </option>
+<option value="5급">
+                                5급
+                            </option>
+<option value="4급">
+                                4급
+                            </option>
+</optgroup>
+</select>
+</div><div class="input-group">
+<label for="militaryId">
+                        군번
+                    </label>
+<input autocomplete="off" id="militaryId" inputmode="text" maxlength="24" pattern="[0-9-]+" placeholder="군번 입력 (숫자 또는 -)" type="text"/>
+</div><div class="input-group">
+<label for="name">
+                        성명
+                    </label>
+<input autocomplete="name" id="name" maxlength="20" placeholder="성명 입력" type="text"/>
+</div></div>
+<div class="user-input-grid user-input-grid-two"><div class="input-group">
+<label for="unit">
+                        소속
+                    </label>
+<input id="unit" maxlength="40" placeholder="소속 입력" type="text"/>
+</div><div class="input-group">
+<label for="phone">
+                        연락처
+                    </label>
+<input id="phone" inputmode="tel" maxlength="20" placeholder="연락처 입력" type="tel"/>
+</div></div>
+</section>
+<!-- ==============================
+             예약 날짜
+        =============================== -->
+<section class="content-card calendar-card">
+<h2 class="section-title">
+                예약 날짜
+            </h2>
+<div class="calendar-header">
+<button aria-label="이전 달" class="calendar-move-button" id="prevMonthBtn" type="button">
+                    ‹
+                </button>
+<h3 id="calendarTitle">
+                    달력
+                </h3>
+<button aria-label="다음 달" class="calendar-move-button" id="nextMonthBtn" type="button">
+                    ›
+                </button>
+</div>
+<div class="calendar-week">
+<span class="sunday">
+                    일
+                </span>
+<span>월</span>
+<span>화</span>
+<span>수</span>
+<span>목</span>
+<span>금</span>
+<span class="saturday">
+                    토
+                </span>
+</div>
+<div class="calendar-grid" id="calendarGrid">
+<!-- calendar.js에서 날짜 생성 -->
+</div>
+<input id="selectedDate" type="hidden"/>
+</section>
+<!-- ==============================
+             사용 시간
+        =============================== -->
+<section class="content-card compact-card">
+<h2 class="section-title">
+                사용 시간
+            </h2>
+<div class="time-slot-grid" id="timeSlotGroup">
+<button class="time-slot selected" data-time="morning" type="button">
+<strong>
+                        오전
+                    </strong>
+<span>
+                        08:00~12:00
+                    </span>
+</button>
+<button class="time-slot" data-time="afternoon" type="button">
+<strong>
+                        오후
+                    </strong>
+<span>
+                        13:00~17:00
+                    </span>
+</button>
+<button class="time-slot" data-time="full" type="button">
+<strong>
+                        하루종일
+                    </strong>
+<span>
+                        08:00~17:00
+                    </span>
+</button>
+</div>
+<input id="selectedTime" type="hidden" value="morning"/>
+</section>
+<!-- ==============================
+             작업대 선택
+        =============================== -->
+<section class="content-card workstation-card">
+<div class="section-heading-row">
+<h2 class="section-title no-margin">
+                    작업대 선택
+                </h2>
+<div class="workstation-legend">
+<span class="legend-item">
+<i class="legend-dot available-dot"></i>
+
+                        가능
+
+                    </span>
+<span class="legend-item">
+<i class="legend-dot partial-dot"></i>
+
+                        일부예약
+
+                    </span>
+<span class="legend-item">
+<i class="legend-dot full-dot"></i>
+
+                        예약완료
+
+                    </span>
+</div>
+</div>
+<div class="workstation-grid" id="workstationGrid">
+<button class="workstation-button" data-station="1" type="button">
+                    1
+                </button>
+<button class="workstation-button" data-station="2" type="button">
+                    2
+                </button>
+<button class="workstation-button" data-station="3" type="button">
+                    3
+                </button>
+<button class="workstation-button" data-station="4" type="button">
+                    4
+                </button>
+<button class="workstation-button" data-station="5" type="button">
+                    5
+                </button>
+<button class="workstation-button" data-station="6" type="button">
+                    6
+                </button>
+<button class="workstation-button" data-station="7" type="button">
+                    7
+                </button>
+<button class="workstation-button" data-station="8" type="button">
+                    8
+                </button>
+<button class="workstation-button" data-station="9" type="button">
+                    9
+                </button>
+<button class="workstation-button" data-station="10" type="button">
+                    10
+                </button>
+</div>
+<input id="selectedStation" type="hidden"/>
+<div class="main-button-row">
+<button class="primary-button" id="reserveBtn" type="button">
+                    예약하기
+                </button>
+<button class="secondary-button" id="resetBtn" type="button">
+                    초기화
+                </button>
+</div>
+</section>
+<!-- ==============================
+             예약 현황
+        =============================== -->
+<section class="content-card reservation-status-card">
+<div class="section-heading-row">
+<h2 class="section-title no-margin">
+                    예약 현황
+                </h2>
+<button class="small-text-button" id="showAllReservationBtn" type="button">
+                    전체보기
+                </button>
+</div>
+<div class="status-summary">
+<button aria-label="전체 예약 보기" class="status-count-button" id="showTotalReservationBtn" type="button">
+                    전체
+                    <strong id="totalReservationCount">0</strong>
+                    건
+                </button>
+<button aria-label="오늘 예약 보기" class="status-count-button" id="showTodayReservationBtn" type="button">
+                    오늘
+                    <strong id="todayReservationCount">0</strong>
+                    건
+                </button>
+<button aria-label="선택일 예약 보기" class="status-count-button" id="showSelectedReservationBtn" type="button">
+                    선택
+                    <strong id="selectedDateReservationCount">0</strong>
+                    건
+                </button>
+</div>
+<div class="selected-date-title" id="selectedDateTitle">
+                날짜를 선택하면 예약 현황이 표시됩니다.
+            </div>
+<div class="compact-reservation-list" id="reservationList">
+<!-- ui.js에서 예약 목록 생성 -->
+</div>
+</section>
+<!-- ==============================
+             공지사항
+        =============================== -->
+<section class="content-card notice-card">
+<div class="section-heading-row">
+<h2 class="section-title no-margin">
+                    📢 실습실 공지사항
+                </h2>
+<span class="notice-guide">
+                    필독
+                </span>
+</div>
+<div class="notice-list" id="noticeList">
+<div class="notice-empty-message">
+                    공지사항을 불러오는 중입니다.
+                </div>
+</div>
+</section>
+<!-- ==============================
+             나의 예약
+        =============================== -->
+<section class="content-card mypage-card">
+<div class="section-heading-row">
+<h2 class="section-title no-margin">
+                    나의 예약
+                </h2>
+<button class="small-text-button" id="clearMyReservationBtn" type="button">
+                    닫기
+                </button>
+</div>
+<div class="inline-search">
+<input autocapitalize="off" autocomplete="off" id="myReservationMilitaryId" inputmode="text" maxlength="24" pattern="[0-9-]+" placeholder="군번 직접 입력 (숫자 또는 -)" spellcheck="false" type="text"/>
+<input id="myReservationName" maxlength="20" placeholder="성명 입력" type="text"/>
+<button class="search-button" id="myReservationSearchBtn" type="button">
+                    조회
+                </button>
+</div>
+<div class="compact-reservation-list" id="myReservationResult">
+<!-- mypage.js에서 조회 결과 생성 -->
+</div>
+</section>
+</main>
+</div>
+<script>
+(function(){
+    "use strict";
+
+    const scripts = [
+        "js/utils.js",
+        "js/storage.js",
+        "js/ui.js",
+        "js/calendar.js",
+        "js/workstation.js",
+        "js/reservation.js",
+        "js/mypage.js",
+        "js/closure.js",
+        "js/app.js"
+    ];
+
+    function loadOne(index, retryCount){
+        if(index >= scripts.length){
+            if(typeof window.initializeApplication === "function"){
+                window.initializeApplication();
+            }
+            return;
+        }
+
+        const script = document.createElement("script");
+        const baseSrc = scripts[index];
+        script.src = retryCount > 0
+            ? baseSrc + "?retry=" + Date.now()
+            : baseSrc;
+        script.async = false;
+
+        script.onload = function(){
+            loadOne(index + 1, 0);
+        };
+
+        script.onerror = function(){
+            script.remove();
+            if(retryCount < 2){
+                setTimeout(function(){
+                    loadOne(index, retryCount + 1);
+                }, 120);
+                return;
+            }
+
+            document.documentElement.setAttribute("data-script-load-error", "true");
+            alert("일부 기능 파일을 불러오지 못했습니다. 화면을 닫았다가 다시 실행해 주세요.");
+        };
+
+        document.body.appendChild(script);
+    }
+
+    loadOne(0, 0);
+})();
+</script>
+</body>
+</html>

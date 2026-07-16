@@ -1,0 +1,610 @@
+<!DOCTYPE html>  <html lang="ko">  <head>  <meta charset="UTF-8">  
+
+<meta  
+    name="viewport"  
+    content="width=device-width, initial-scale=1.0"  
+>  
+
+<meta  
+    name="theme-color"  
+    content="#0b3a82"  
+>  
+
+<title>  
+    전기기능사 실습실 예약·관리 시스템 관리자  
+</title>  
+
+<link  
+    rel="stylesheet"  
+    href="css/admin.css"  
+>
+
+</head>  <body>  <div class="admin-app-container">  <!-- ==============================  
+     관리자 헤더  
+=============================== -->  
+
+<header class="admin-main-header">  
+
+    <h1 class="admin-main-title">⚡ 전기기능사 실습실 예약·관리 시스템</h1>  
+
+    <a  
+        id="userPageBtn"  
+        class="admin-header-button"  
+        href="index.html"  
+        role="button"  
+    >  
+        사용자  
+    </a>  
+
+    <span class="admin-creator">  
+        제작자 장준구  
+    </span>  
+
+</header>  
+
+
+
+<main>  
+
+
+    <!-- ==============================  
+         관리자 로그인  
+    =============================== -->  
+
+    <section  
+        id="adminLoginSection"  
+        class="admin-card"  
+    >  
+
+        <h2 class="admin-section-title">  
+            관리자 로그인  
+        </h2>  
+
+
+        <div class="admin-login-row">  
+
+            <input  
+                type="password"  
+                id="adminPasswordInput"  
+                inputmode="numeric"  
+                maxlength="10"  
+                placeholder="관리자 비밀번호"  
+            >  
+
+            <button  
+                type="button"  
+                id="adminLoginBtn"  
+                class="admin-primary-button"  
+            >  
+                로그인  
+            </button>  
+
+        </div>  
+
+        <div class="admin-master-toggle-row">
+            <button type="button" id="showMasterLoginBtn" class="admin-secondary-button">마스터 코드 로그인</button>
+        </div>
+
+        <div id="masterLoginArea" class="admin-master-login hidden">
+            <input type="password" id="masterCodeInput" inputmode="numeric" maxlength="20" placeholder="마스터 코드">
+            <button type="button" id="masterLoginBtn" class="admin-primary-button">마스터 로그인</button>
+        </div>
+
+        <p class="admin-guide-text">  
+            일반 관리자는 공용 비밀번호로 로그인합니다. 비밀번호 변경은 마스터 로그인에서만 가능합니다.  
+        </p>  
+
+    </section>  
+
+
+
+    <!-- ==============================  
+         관리자 본문  
+    =============================== -->  
+
+    <div  
+        id="adminContent"  
+        class="admin-content hidden"  
+    >  
+
+
+        <section class="admin-card admin-session-card">
+            <div class="admin-session-row">
+                <strong>로그인 상태</strong>
+                <span id="adminSessionBadge" class="admin-session-badge">일반 관리자</span>
+            </div>
+        </section>
+
+        <section id="passwordChangeSection" class="admin-card hidden">
+            <h2 class="admin-section-title">공용 관리자 비밀번호 변경</h2>
+            <p class="admin-guide-text">마스터 코드로 로그인한 경우에만 변경할 수 있습니다.</p>
+            <div class="password-change-grid">
+                <div class="admin-input-group">
+                    <label for="currentAdminPasswordInput">현재 비밀번호</label>
+                    <input type="password" id="currentAdminPasswordInput" maxlength="20" autocomplete="current-password">
+                </div>
+                <div class="admin-input-group">
+                    <label for="newAdminPasswordInput">새 비밀번호</label>
+                    <input type="password" id="newAdminPasswordInput" maxlength="20" autocomplete="new-password">
+                </div>
+                <div class="admin-input-group">
+                    <label for="confirmAdminPasswordInput">새 비밀번호 확인</label>
+                    <input type="password" id="confirmAdminPasswordInput" maxlength="20" autocomplete="new-password">
+                </div>
+            </div>
+            <button type="button" id="changeAdminPasswordBtn" class="admin-primary-button password-change-button">공용 비밀번호 변경</button>
+            <p id="passwordChangeMessage" class="notice-save-message" aria-live="polite"></p>
+        </section>
+
+        <!-- 관리자 달력을 최상단에 배치 -->
+
+
+
+        <!-- ==============================
+             관리자 달력형 예약현황 (V6.6)
+        =============================== -->
+        <section class="admin-card admin-calendar-card">
+            <div class="admin-section-heading">
+                <h2 class="admin-section-title no-margin">관리자 달력 예약현황</h2>
+                <span id="adminCalendarSelectedCount" class="admin-list-count">0건</span>
+            </div>
+
+            <div class="admin-calendar-header">
+                <button type="button" id="adminCalendarPrevBtn" class="admin-calendar-nav" aria-label="이전 달">‹</button>
+                <strong id="adminCalendarTitle" class="admin-calendar-title"></strong>
+                <button type="button" id="adminCalendarNextBtn" class="admin-calendar-nav" aria-label="다음 달">›</button>
+            </div>
+            <div class="admin-calendar-weekdays" aria-hidden="true">
+                <span class="sunday">일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span class="saturday">토</span>
+            </div>
+            <div id="adminCalendarGrid" class="admin-calendar-grid"></div>
+
+            <div class="admin-calendar-detail-heading" id="adminCalendarDetailHeading">
+                <strong id="adminCalendarSelectedDate">날짜를 선택하세요</strong>
+                <span class="admin-calendar-guide">날짜를 누르면 예약자가 표시됩니다.</span>
+            </div>
+            <div class="admin-day-summary" aria-label="선택 날짜 예약 요약">
+                <span>전체 <strong id="adminSelectedTotalCount">0</strong>건</span>
+                <span>오전 <strong id="adminSelectedMorningCount">0</strong>건</span>
+                <span>오후 <strong id="adminSelectedAfternoonCount">0</strong>건</span>
+                <span>하루종일 <strong id="adminSelectedFullCount">0</strong>건</span>
+            </div>
+            <div id="adminCalendarReservationList" class="admin-reservation-list admin-calendar-reservation-list">
+                <div class="admin-empty-message">날짜를 선택하면 해당 날짜의 예약현황이 표시됩니다.</div>
+            </div>
+        </section>
+
+        
+
+        <!-- 달력 아래 예약 요약 버튼 -->
+
+        <!-- ==============================  
+             예약 통계  
+        =============================== -->  
+
+        <section class="admin-card admin-statistics-card">
+            <div class="admin-dashboard-grid">
+                <button type="button" id="adminTodaySummaryBtn" class="admin-summary-button">
+                    <span>오늘 예약</span><strong id="adminTodayCount">0</strong><small>건 · 눌러서 보기</small>
+                </button>
+                <button type="button" id="adminWeekSummaryBtn" class="admin-summary-button">
+                    <span>이번 주 예약</span><strong id="adminWeekCount">0</strong><small>건 · 눌러서 보기</small>
+                </button>
+                <button type="button" id="adminAllSummaryBtn" class="admin-summary-button">
+                    <span>전체 예약</span><strong id="adminTotalCount">0</strong><small>건 · 눌러서 보기</small>
+                </button>
+            </div>
+            <span class="admin-usage-hidden">사용률 <strong id="adminUsageRate">0%</strong></span>
+        </section>  
+
+
+
+
+        <!-- ==============================
+             예약 검색
+        =============================== -->
+        <section class="admin-card">  
+
+            <h2 class="admin-section-title">  
+                예약 검색  
+            </h2>  
+
+
+            <div class="admin-search-row">  
+
+                <input  
+                    type="search"  
+                    id="adminSearchInput"  
+                    placeholder="군번 / 성명 / 계급 / 소속 / 연락처 검색"  
+                >  
+
+                <button  
+                    type="button"  
+                    id="adminSearchBtn"  
+                    class="admin-search-button"  
+                >검색</button>
+                <button type="button" id="adminSearchResetBtn" class="admin-search-reset-button">초기화</button>  
+
+            </div>  
+
+        </section>  
+
+
+
+        <!-- ==============================  
+             예약 목록  
+        =============================== -->  
+
+        <section class="admin-card">  
+
+            <div class="admin-section-heading">  
+
+                <h2 class="admin-section-title no-margin" id="adminListTitle">
+                    예약 상세 목록
+                </h2>  
+
+                <div class="admin-list-heading-actions">
+                    <span
+                        id="adminListCount"
+                        class="admin-list-count"
+                    >
+                        0건
+                    </span>
+                    <button
+                        type="button"
+                        id="closeAdminStatusBtn"
+                        class="admin-status-close-button hidden"
+                    >
+                        현황 닫기
+                    </button>
+                </div>
+
+            </div>  
+
+
+            <div  
+                id="adminReservationList"  
+                class="admin-reservation-list"  
+            >  
+
+                <div class="admin-empty-message">  
+                    예약 내역이 없습니다.  
+                </div>  
+
+            </div>  
+
+        </section>  
+
+
+
+        <!-- ==============================
+             예약 마감 관리
+        =============================== -->
+        <section id="closureManagementSection" class="admin-card closure-management-card">
+            <div class="admin-section-heading">
+                <h2 class="admin-section-title no-margin">예약 마감 관리</h2>
+                <button type="button" id="toggleClosureSectionBtn" class="admin-section-toggle" aria-expanded="false">펼치기</button>
+            </div>
+            <div id="closureManagementBody" class="admin-collapsible-body hidden">
+            <div class="closure-form-grid">
+                <div class="admin-input-group"><label for="closureType">마감 방식</label><select id="closureType"><option value="day">하루 마감</option><option value="period">기간 마감</option></select></div>
+                <div class="admin-input-group"><label for="closureStartDate">시작일</label><input type="date" id="closureStartDate"></div>
+                <div class="admin-input-group"><label for="closureEndDate">종료일</label><input type="date" id="closureEndDate"></div>
+                <div class="admin-input-group closure-reason-group"><label for="closureReason">마감 사유</label><input type="text" id="closureReason" maxlength="60" placeholder="시설점검, 부대행사, 시험 준비 등"></div>
+            </div>
+            <div class="closure-preview-box">
+                <div class="admin-section-heading"><strong>마감 대상 예약</strong><span id="closureTargetCount" class="admin-list-count">0건</span></div>
+                <div id="closureTargetPreview" class="closure-target-preview"></div>
+            </div>
+            <button type="button" id="executeClosureBtn" class="admin-danger-button closure-execute-button">예약 취소 및 마감 실행</button>
+            <h3 class="closure-list-title">현재 마감 목록</h3>
+            <div id="closureList" class="closure-list"></div>
+            </div>
+        </section>
+
+        <!-- ==============================  
+             공지사항 관리  
+        =============================== -->  
+
+        <section class="admin-card notice-management-card">  
+
+            <div class="admin-section-heading">  
+
+                <h2 class="admin-section-title no-margin">📢 공지사항 관리</h2>  
+                <div class="admin-heading-tools">
+                    <span class="admin-notice-limit">최대 5개</span>
+                    <button type="button" id="toggleNoticeSectionBtn" class="admin-section-toggle" aria-expanded="false">펼치기</button>
+                </div>
+            </div>
+            <div id="noticeManagementBody" class="admin-collapsible-body hidden">  
+
+
+            <p class="admin-guide-text notice-guide-text">  
+                사용자 화면에 표시할 공지사항을 작성하세요.  
+            </p>  
+
+
+            <div  
+                id="adminNoticeEditor"  
+                class="admin-notice-editor"  
+            >  
+
+
+                <!-- 공지 1 -->  
+
+                <div class="admin-notice-row">  
+
+                    <select  
+                        id="noticeType1"  
+                        class="admin-notice-type"  
+                    >  
+
+                        <option value="important">  
+                            중요  
+                        </option>  
+
+                        <option value="guide">  
+                            안내  
+                        </option>  
+
+                        <option value="general">  
+                            일반  
+                        </option>  
+
+                    </select>  
+
+                    <input  
+                        type="text"  
+                        id="noticeText1"  
+                        class="admin-notice-input"  
+                        maxlength="100"  
+                        placeholder="공지사항 1"  
+                    >  
+
+                </div>  
+
+
+
+                <!-- 공지 2 -->  
+
+                <div class="admin-notice-row">  
+
+                    <select  
+                        id="noticeType2"  
+                        class="admin-notice-type"  
+                    >  
+
+                        <option value="important">  
+                            중요  
+                        </option>  
+
+                        <option  
+                            value="guide"  
+                            selected  
+                        >  
+                            안내  
+                        </option>  
+
+                        <option value="general">  
+                            일반  
+                        </option>  
+
+                    </select>  
+
+                    <input  
+                        type="text"  
+                        id="noticeText2"  
+                        class="admin-notice-input"  
+                        maxlength="100"  
+                        placeholder="공지사항 2"  
+                    >  
+
+                </div>  
+
+
+
+                <!-- 공지 3 -->  
+
+                <div class="admin-notice-row">  
+
+                    <select  
+                        id="noticeType3"  
+                        class="admin-notice-type"  
+                    >  
+
+                        <option value="important">  
+                            중요  
+                        </option>  
+
+                        <option  
+                            value="guide"  
+                            selected  
+                        >  
+                            안내  
+                        </option>  
+
+                        <option value="general">  
+                            일반  
+                        </option>  
+
+                    </select>  
+
+                    <input  
+                        type="text"  
+                        id="noticeText3"  
+                        class="admin-notice-input"  
+                        maxlength="100"  
+                        placeholder="공지사항 3"  
+                    >  
+
+                </div>  
+
+
+
+                <!-- 공지 4 -->  
+
+                <div class="admin-notice-row">  
+
+                    <select  
+                        id="noticeType4"  
+                        class="admin-notice-type"  
+                    >  
+
+                        <option  
+                            value="important"  
+                            selected  
+                        >  
+                            중요  
+                        </option>  
+
+                        <option value="guide">  
+                            안내  
+                        </option>  
+
+                        <option value="general">  
+                            일반  
+                        </option>  
+
+                    </select>  
+
+                    <input  
+                        type="text"  
+                        id="noticeText4"  
+                        class="admin-notice-input"  
+                        maxlength="100"  
+                        placeholder="공지사항 4"  
+                    >  
+
+                </div>  
+
+
+
+                <!-- 공지 5 -->  
+
+                <div class="admin-notice-row">  
+
+                    <select  
+                        id="noticeType5"  
+                        class="admin-notice-type"  
+                    >  
+
+                        <option value="important">  
+                            중요  
+                        </option>  
+
+                        <option value="guide">  
+                            안내  
+                        </option>  
+
+                        <option  
+                            value="general"  
+                            selected  
+                        >  
+                            일반  
+                        </option>  
+
+                    </select>  
+
+                    <input  
+                        type="text"  
+                        id="noticeText5"  
+                        class="admin-notice-input"  
+                        maxlength="100"  
+                        placeholder="공지사항 5"  
+                    >  
+
+                </div>  
+
+
+            </div>  
+
+
+            <div class="admin-notice-button-row">  
+
+                <button  
+                    type="button"  
+                    id="resetNoticeBtn"  
+                    class="admin-secondary-button"  
+                >  
+                    기본내용  
+                </button>  
+
+                <button  
+                    type="button"  
+                    id="saveNoticeBtn"  
+                    class="admin-primary-button"  
+                >  
+                    공지 저장  
+                </button>  
+
+            </div>  
+
+
+            <p  
+                id="noticeSaveMessage"  
+                class="notice-save-message"  
+                aria-live="polite"  
+            ></p>  
+            </div>
+        </section>  
+
+
+    </div>  
+
+
+</main>
+<button type="button" id="adminScrollTopBtn" class="admin-scroll-top-button" aria-label="맨 위로 이동">↑</button>
+
+</div>  <!-- ==============================  
+     JavaScript 연결  
+=============================== -->  <script>
+(function(){
+    "use strict";
+
+    const scripts = [
+        "js/utils.js",
+        "js/storage.js",
+        "js/admin.js",
+        "js/admin-closure.js"
+    ];
+
+    function loadOne(index, retryCount){
+        if(index >= scripts.length){
+            if(typeof window.initializeAdmin === "function"){
+                window.initializeAdmin();
+            }
+            return;
+        }
+
+        const script = document.createElement("script");
+        const baseSrc = scripts[index];
+        script.src = retryCount > 0
+            ? baseSrc + "?retry=" + Date.now()
+            : baseSrc;
+        script.async = false;
+
+        script.onload = function(){
+            loadOne(index + 1, 0);
+        };
+
+        script.onerror = function(){
+            script.remove();
+            if(retryCount < 2){
+                setTimeout(function(){
+                    loadOne(index, retryCount + 1);
+                }, 120);
+                return;
+            }
+
+            document.documentElement.setAttribute("data-script-load-error", "true");
+            alert("일부 관리자 기능 파일을 불러오지 못했습니다. 화면을 닫았다가 다시 실행해 주세요.");
+        };
+
+        document.body.appendChild(script);
+    }
+
+    loadOne(0, 0);
+})();
+</script>
+
+  </body>  </html>

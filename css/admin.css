@@ -1,0 +1,1663 @@
+/* =========================================
+   전기기능사 실습실 예약·관리 시스템 V6.4
+   관리자 화면 전용 스타일
+========================================= */
+
+
+/* =========================================
+   기본 설정
+========================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+
+:root{
+
+    --main:#0b3a82;
+    --main-dark:#07295d;
+    --main-light:#eaf2ff;
+
+    --background:#eef3f8;
+    --card:#ffffff;
+
+    --text:#222222;
+    --sub-text:#667085;
+
+    --border:#d7dee8;
+
+    --red:#d32f2f;
+    --red-light:#fdecec;
+
+    --yellow:#f4b400;
+    --yellow-light:#fff8df;
+
+    --green:#2e7d32;
+    --green-light:#edf8ef;
+
+    --shadow:0 3px 12px rgba(0,0,0,.08);
+
+    --radius:14px;
+
+}
+
+
+html{
+
+    -webkit-text-size-adjust:100%;
+
+}
+
+
+body{
+
+    min-height:100vh;
+
+    padding:10px;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    font-family:
+        Arial,
+        "Noto Sans KR",
+        sans-serif;
+
+}
+
+
+button,
+input,
+select{
+
+    font-family:inherit;
+
+}
+
+
+button{
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.admin-app-container{
+
+    width:100%;
+
+    max-width:580px;
+
+    margin:0 auto;
+
+    padding-bottom:24px;
+
+}
+
+
+
+/* =========================================
+   관리자 헤더
+========================================= */
+
+.admin-main-header{
+
+    position:relative;
+
+    min-height:96px;
+
+    margin-bottom:12px;
+
+    padding:17px 65px 24px 14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:var(--main);
+
+    color:white;
+
+    border-radius:16px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.admin-main-title{
+
+    width:100%;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    line-height:1.4;
+
+    text-align:center;
+
+    letter-spacing:-.4px;
+
+}
+
+
+.admin-header-button{
+
+    position:absolute;
+
+    top:9px;
+
+    right:9px;
+
+    min-width:52px;
+
+    height:28px;
+
+    padding:0 8px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:white;
+
+    color:var(--main);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.admin-header-button:active{
+
+    transform:scale(.97);
+
+}
+
+
+.admin-creator{
+
+    position:absolute;
+
+    right:11px;
+
+    bottom:7px;
+
+    font-size:10px;
+
+    font-weight:500;
+
+    color:rgba(255,255,255,.9);
+
+}
+
+
+
+/* =========================================
+   공통 카드
+========================================= */
+
+.admin-card{
+
+    margin-bottom:12px;
+
+    padding:14px;
+
+    background:var(--card);
+
+    border:1px solid rgba(215,222,232,.75);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.admin-compact-card{
+
+    padding-top:10px;
+
+    padding-bottom:10px;
+
+}
+
+
+.admin-section-title{
+
+    margin-bottom:11px;
+
+    color:var(--main);
+
+    font-size:17px;
+
+    font-weight:700;
+
+}
+
+
+.admin-section-title.no-margin{
+
+    margin-bottom:0;
+
+}
+
+
+.admin-section-heading{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:8px;
+
+    margin-bottom:11px;
+
+}
+
+
+.hidden{
+
+    display:none !important;
+
+}
+
+
+
+/* =========================================
+   관리자 로그인
+========================================= */
+
+.admin-login-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 72px;
+
+    gap:8px;
+
+}
+
+
+.admin-login-row input{
+
+    width:100%;
+
+    min-width:0;
+
+    height:42px;
+
+    padding:0 10px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    font-size:14px;
+
+}
+
+
+.admin-login-row input:focus,
+.admin-search-row input:focus,
+.admin-notice-input:focus,
+.admin-notice-type:focus{
+
+    outline:none;
+
+    border-color:var(--main);
+
+    box-shadow:0 0 0 3px rgba(11,58,130,.12);
+
+}
+
+
+.admin-primary-button,
+.admin-secondary-button{
+
+    height:42px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.admin-primary-button{
+
+    background:var(--main);
+
+    color:white;
+
+}
+
+
+.admin-primary-button:active{
+
+    background:var(--main-dark);
+
+}
+
+
+.admin-secondary-button{
+
+    background:#e4e7ec;
+
+    color:#344054;
+
+}
+
+
+.admin-guide-text{
+
+    margin-top:8px;
+
+    color:var(--sub-text);
+
+    font-size:11px;
+
+}
+
+
+
+/* =========================================
+   예약 통계
+========================================= */
+
+.admin-statistics-card{
+
+    padding-top:10px;
+
+    padding-bottom:10px;
+
+}
+
+
+.admin-statistics-line{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:6px;
+
+}
+
+
+.admin-statistics-line span{
+
+    min-height:40px;
+
+    padding:7px 4px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:3px;
+
+    background:#f4f7fb;
+
+    border-radius:9px;
+
+    color:#475467;
+
+    font-size:11px;
+
+    text-align:center;
+
+}
+
+
+.admin-statistics-line strong{
+
+    color:var(--main);
+
+    font-size:15px;
+
+}
+
+
+
+/* =========================================
+   전체예약·오늘예약 필터
+========================================= */
+
+.admin-filter-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:8px;
+
+}
+
+
+.admin-filter-button{
+
+    height:38px;
+
+    border:1px solid #c8d4e5;
+
+    border-radius:9px;
+
+    background:#f8fafc;
+
+    color:#344054;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.admin-filter-button.selected{
+
+    border-color:var(--main);
+
+    background:var(--main);
+
+    color:white;
+
+}
+
+
+
+/* =========================================
+   예약 검색
+========================================= */
+
+.admin-search-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 58px;
+
+    gap:7px;
+
+}
+
+
+.admin-search-row input{
+
+    width:100%;
+
+    min-width:0;
+
+    height:42px;
+
+    padding:0 10px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    font-size:14px;
+
+}
+
+
+.admin-search-button{
+
+    height:42px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:var(--main);
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+
+/* =========================================
+   예약 목록
+========================================= */
+
+.admin-list-count{
+
+    padding:4px 8px;
+
+    border-radius:8px;
+
+    background:var(--main-light);
+
+    color:var(--main);
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.admin-reservation-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+
+.admin-reservation-item{
+
+    padding:10px;
+
+    display:grid;
+
+    grid-template-columns:auto 1fr auto;
+
+    align-items:center;
+
+    gap:8px;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:10px;
+
+    background:white;
+
+}
+
+
+.admin-reservation-time{
+
+    min-width:48px;
+
+    padding:5px 6px;
+
+    border-radius:8px;
+
+    text-align:center;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+
+.admin-reservation-time.morning{
+
+    background:#fff5d6;
+
+    color:#9a6700;
+
+}
+
+
+.admin-reservation-time.afternoon{
+
+    background:#e7f1ff;
+
+    color:#175cd3;
+
+}
+
+
+.admin-reservation-time.full{
+
+    background:#ffe4e4;
+
+    color:#b42318;
+
+}
+
+
+.admin-reservation-info{
+
+    min-width:0;
+
+}
+
+
+.admin-reservation-person-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    min-width:0;
+
+    margin-bottom:3px;
+
+}
+
+
+.admin-reservation-info strong{
+
+    color:#101828;
+
+    font-size:13px;
+
+    white-space:nowrap;
+
+}
+
+
+.admin-reservation-unit{
+
+    min-width:0;
+
+    color:#475467;
+
+    font-size:12px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.admin-reservation-info > span{
+
+    display:block;
+
+    margin-top:2px;
+
+    color:#667085;
+
+    font-size:11px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+
+.admin-delete-button{
+
+    height:32px;
+
+    padding:0 9px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:var(--red-light);
+
+    color:var(--red);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.admin-delete-button:active{
+
+    transform:scale(.97);
+
+}
+
+
+.admin-empty-message{
+
+    padding:18px 8px;
+
+    text-align:center;
+
+    color:#98a2b3;
+
+    font-size:12px;
+
+}
+
+
+
+/* =========================================
+   공지사항 관리
+========================================= */
+
+.notice-management-card{
+
+    border-left:4px solid var(--main);
+
+}
+
+
+.admin-notice-limit{
+
+    padding:4px 8px;
+
+    border-radius:8px;
+
+    background:var(--main-light);
+
+    color:var(--main);
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+
+.notice-guide-text{
+
+    margin-top:0;
+
+    margin-bottom:10px;
+
+}
+
+
+.admin-notice-editor{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+
+.admin-notice-row{
+
+    display:grid;
+
+    grid-template-columns:70px 1fr;
+
+    gap:7px;
+
+}
+
+
+.admin-notice-type{
+
+    width:100%;
+
+    height:40px;
+
+    padding:0 7px;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    background:white;
+
+    color:#344054;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+
+.admin-notice-input{
+
+    width:100%;
+
+    min-width:0;
+
+    height:40px;
+
+    padding:0 10px;
+
+    border:1px solid var(--border);
+
+    border-radius:9px;
+
+    font-size:13px;
+
+}
+
+
+.admin-notice-button-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 2fr;
+
+    gap:8px;
+
+    margin-top:12px;
+
+}
+
+
+.notice-save-message{
+
+    min-height:18px;
+
+    margin-top:8px;
+
+    color:var(--green);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    text-align:center;
+
+}
+
+
+
+/* =========================================
+   공지 종류별 선택창 색상
+========================================= */
+
+.admin-notice-type option[value="important"]{
+
+    color:var(--red);
+
+}
+
+
+.admin-notice-type option[value="guide"]{
+
+    color:#8a6100;
+
+}
+
+
+.admin-notice-type option[value="general"]{
+
+    color:var(--main);
+
+}
+
+
+
+/* =========================================
+   작은 화면
+========================================= */
+
+@media(max-width:420px){
+
+
+    body{
+
+        padding:7px;
+
+    }
+
+
+    .admin-app-container{
+
+        max-width:100%;
+
+    }
+
+
+    .admin-main-header{
+
+        min-height:90px;
+
+        padding:15px 58px 22px 10px;
+
+    }
+
+
+    .admin-main-title{
+
+        font-size:17px;
+
+    }
+
+
+    .admin-header-button{
+
+        top:8px;
+
+        right:8px;
+
+        min-width:48px;
+
+        height:27px;
+
+        font-size:10px;
+
+    }
+
+
+    .admin-creator{
+
+        right:9px;
+
+        bottom:6px;
+
+        font-size:9px;
+
+    }
+
+
+    .admin-card{
+
+        padding:12px;
+
+        margin-bottom:9px;
+
+    }
+
+
+    .admin-section-title{
+
+        font-size:16px;
+
+        margin-bottom:9px;
+
+    }
+
+
+    .admin-statistics-line{
+
+        gap:4px;
+
+    }
+
+
+    .admin-statistics-line span{
+
+        padding:6px 2px;
+
+        font-size:10px;
+
+    }
+
+
+    .admin-statistics-line strong{
+
+        font-size:14px;
+
+    }
+
+
+    .admin-reservation-item{
+
+        gap:6px;
+
+        padding:9px;
+
+    }
+
+
+    .admin-reservation-time{
+
+        min-width:44px;
+
+        font-size:10px;
+
+    }
+
+
+    .admin-delete-button{
+
+        padding:0 8px;
+
+        font-size:10px;
+
+    }
+
+
+    .admin-notice-row{
+
+        grid-template-columns:64px 1fr;
+
+        gap:5px;
+
+    }
+
+
+    .admin-notice-type{
+
+        padding:0 4px;
+
+        font-size:11px;
+
+    }
+
+
+    .admin-notice-input{
+
+        padding:0 8px;
+
+        font-size:12px;
+
+    }
+
+}
+
+
+
+/* =========================================
+   아주 작은 화면
+========================================= */
+
+@media(max-width:350px){
+
+
+    .admin-main-title{
+
+        font-size:15px;
+
+    }
+
+
+    .admin-statistics-line span{
+
+        flex-direction:column;
+
+        gap:1px;
+
+    }
+
+
+    .admin-reservation-item{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .admin-reservation-time{
+
+        width:max-content;
+
+    }
+
+
+    .admin-delete-button{
+
+        width:100%;
+
+    }
+
+
+    .admin-notice-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .admin-notice-button-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+/* V6.4 예약 마감 관리 */
+.closure-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.admin-input-group{display:flex;flex-direction:column;gap:6px;}
+.admin-input-group label{font-size:12px;font-weight:700;color:var(--sub-text);}
+.admin-input-group input,.admin-input-group select{width:100%;height:40px;padding:0 10px;border:1px solid var(--border);border-radius:9px;background:#fff;font-size:13px;}
+.closure-reason-group{grid-column:1/-1;}
+.closure-preview-box{margin-top:12px;padding:11px;border:1px solid var(--border);border-radius:10px;background:#f8fafc;}
+.closure-target-preview{max-height:150px;overflow:auto;margin-top:8px;font-size:12px;line-height:1.7;color:#475467;}
+.closure-execute-button{width:100%;min-height:42px;margin-top:12px;}
+.closure-list-title{margin:16px 0 9px;font-size:15px;color:var(--main);}
+.closure-list{display:flex;flex-direction:column;gap:8px;}
+.closure-list-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px;border:1px solid var(--border);border-radius:10px;background:#fff;}
+.closure-list-main{display:flex;flex-direction:column;gap:3px;font-size:12px;color:#475467;}
+.closure-list-main strong{color:#1d2939;font-size:13px;}
+.admin-danger-button{border:none;border-radius:8px;background:var(--red);color:#fff;padding:9px 12px;font-weight:700;cursor:pointer;}
+.closure-release-button{flex:0 0 auto;font-size:11px;}
+@media(max-width:420px){.closure-form-grid{grid-template-columns:1fr;}.closure-reason-group{grid-column:auto;}.closure-list-item{align-items:flex-start;}}
+
+
+/* V6.4 공용 관리자 비밀번호 및 마스터 로그인 */
+.admin-master-toggle-row{display:flex;justify-content:flex-end;margin-top:10px;}
+.admin-master-login{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:10px;}
+.admin-master-login input{min-width:0;height:42px;padding:0 12px;border:1px solid var(--border);border-radius:9px;font-size:14px;}
+.admin-session-card{padding-top:12px;padding-bottom:12px;}
+.admin-session-row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.admin-session-badge{display:inline-flex;align-items:center;min-height:28px;padding:4px 10px;border-radius:999px;background:#eef4ff;color:#175cd3;font-size:12px;font-weight:800;}
+.password-change-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;}
+.password-change-button{width:100%;margin-top:12px;min-height:42px;}
+@media(max-width:600px){.password-change-grid{grid-template-columns:1fr;}.admin-master-login{grid-template-columns:1fr;}.admin-master-login button{width:100%;}}
+
+/* V6.4.4: 사용자 이동 링크를 기존 버튼과 동일하게 표시 */
+a.admin-header-button {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* V6.5 관리자 달력형 예약현황 */
+.admin-calendar-header{display:grid;grid-template-columns:42px 1fr 42px;align-items:center;gap:8px;margin:14px 0 10px;}
+.admin-calendar-title{text-align:center;font-size:17px;color:var(--main);}
+.admin-calendar-nav{height:38px;border:1px solid var(--border);border-radius:9px;background:#fff;color:var(--main);font-size:25px;line-height:1;cursor:pointer;}
+.admin-calendar-weekdays,.admin-calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;}
+.admin-calendar-weekdays{margin-bottom:4px;text-align:center;font-size:11px;font-weight:800;color:#667085;}
+.admin-calendar-weekdays span{padding:5px 0;}
+.admin-calendar-weekdays .sunday{color:#d92d20;}.admin-calendar-weekdays .saturday{color:#175cd3;}
+.admin-calendar-day{position:relative;min-height:62px;padding:7px 3px 18px;display:flex;align-items:flex-start;justify-content:center;border:1px solid #e4e7ec;border-radius:8px;background:#fff;color:#344054;text-align:center;cursor:pointer;overflow:hidden;}
+.admin-calendar-day.empty{border:0;background:transparent;cursor:default;}
+.admin-calendar-day.sunday{color:#d92d20}.admin-calendar-day.saturday{color:#175cd3}
+.admin-calendar-day.today{border-color:#2e90fa;box-shadow:inset 0 0 0 1px #2e90fa;}
+.admin-calendar-day.selected{background:#eff8ff;border-color:#1570ef;box-shadow:inset 0 0 0 1px #1570ef;}
+.admin-calendar-day.closed{background:#f2f4f7;color:#667085;}
+.admin-calendar-day-number{display:block;line-height:1;font-size:12px;font-weight:800;}
+.admin-calendar-status{position:absolute;left:3px;right:3px;bottom:4px;min-height:13px;display:flex;align-items:center;justify-content:center;}
+.admin-calendar-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:13px;padding:0 4px;border-radius:7px;background:#eaf2ff;color:#175cd3;font-size:9px;font-weight:800;white-space:nowrap;}
+.admin-calendar-closed-label{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:13px;padding:0 4px;border-radius:7px;background:#e5e7eb;color:#667085;font-size:9px;font-weight:800;white-space:nowrap;}
+.admin-calendar-detail-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin:16px 0 9px;padding-top:12px;border-top:1px solid var(--border);}
+.admin-calendar-detail-heading strong{font-size:14px;color:#1d2939;}.admin-calendar-guide{font-size:10px;color:#98a2b3;text-align:right;}
+.admin-calendar-reservation-list{max-height:430px;overflow:auto;}
+@media(max-width:380px){.admin-calendar-day{min-height:55px;padding:6px 2px 17px}.admin-calendar-count,.admin-calendar-closed-label{font-size:8px;padding:0 3px}.admin-calendar-guide{display:none}}
+
+
+/* V6.6 운영 대시보드 */
+.admin-dashboard-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.admin-summary-button{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:14px;border:1px solid #d7dee8;border-radius:12px;background:#fff;cursor:pointer;text-align:left}
+.admin-summary-button strong{font-size:25px;line-height:1.1}
+.admin-summary-button small{color:#64748b}
+.admin-summary-button:active{transform:scale(.99)}
+.admin-usage-hidden{display:none}
+@media(max-width:420px){.admin-dashboard-grid{grid-template-columns:1fr 1fr}.admin-summary-button{padding:11px}.admin-summary-button strong{font-size:22px}}
+
+/* =========================================
+   V6.6.6 COMPACT UI
+   관리자 화면 공간 최적화
+========================================= */
+
+/* 사용자 달력과 같은 크기 및 간격 */
+.admin-calendar-card{
+    padding:14px;
+}
+.admin-calendar-header{
+    grid-template-columns:42px 1fr 42px;
+    gap:8px;
+    margin:0 0 10px;
+}
+.admin-calendar-nav{
+    width:42px;
+    height:36px;
+    border:none;
+    border-radius:9px;
+    background:var(--main);
+    color:#fff;
+}
+.admin-calendar-weekdays,
+.admin-calendar-grid{
+    gap:5px;
+}
+.admin-calendar-weekdays{
+    margin-bottom:5px;
+    font-size:12px;
+}
+.admin-calendar-day{
+    min-height:48px;
+    padding:5px 3px 13px;
+    border-color:#e1e7ef;
+    border-radius:9px;
+    background:#f9fbfd;
+}
+.admin-calendar-day-number{
+    font-size:13px;
+}
+.admin-calendar-status{
+    bottom:3px;
+}
+.admin-calendar-detail-heading{
+    margin:12px 0 7px;
+    padding-top:9px;
+}
+
+/* 오늘·이번 주·전체 예약 버튼 한 줄 배치 */
+.admin-statistics-card{
+    padding:10px;
+}
+.admin-dashboard-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:6px;
+}
+.admin-summary-button{
+    min-width:0;
+    min-height:64px;
+    gap:1px;
+    padding:8px 6px;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    border-radius:9px;
+}
+.admin-summary-button span{
+    width:100%;
+    overflow:hidden;
+    font-size:11px;
+    font-weight:700;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+.admin-summary-button strong{
+    font-size:20px;
+    line-height:1;
+}
+.admin-summary-button small{
+    font-size:9px;
+    line-height:1.2;
+    white-space:nowrap;
+}
+
+/* 예약 마감 관리 입력 영역 압축 */
+.closure-management-card{
+    padding:11px 12px;
+}
+.closure-management-card .admin-section-heading{
+    margin-bottom:6px;
+}
+.closure-form-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:6px 8px;
+    margin-top:6px;
+}
+.closure-reason-group{
+    grid-column:auto;
+}
+.closure-management-card .admin-input-group{
+    gap:3px;
+    min-width:0;
+}
+.closure-management-card .admin-input-group label{
+    font-size:11px;
+}
+.closure-management-card .admin-input-group input,
+.closure-management-card .admin-input-group select{
+    min-width:0;
+    height:35px;
+    padding:0 7px;
+    border-radius:8px;
+    font-size:12px;
+}
+.closure-preview-box{
+    margin-top:8px;
+    padding:8px;
+    border-radius:8px;
+}
+.closure-target-preview{
+    max-height:90px;
+    margin-top:5px;
+    font-size:11px;
+    line-height:1.5;
+}
+.closure-execute-button{
+    min-height:36px;
+    margin-top:8px;
+    padding:7px 10px;
+    font-size:12px;
+}
+.closure-list-title{
+    margin:11px 0 6px;
+    font-size:14px;
+}
+.closure-list{
+    gap:6px;
+}
+.closure-list-item{
+    gap:7px;
+    padding:8px;
+    border-radius:8px;
+}
+
+@media(max-width:420px){
+    .admin-dashboard-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+    .admin-summary-button{
+        min-height:60px;
+        padding:7px 3px;
+    }
+    .admin-summary-button strong{
+        font-size:19px;
+    }
+    .admin-summary-button small{
+        font-size:8px;
+    }
+    .closure-form-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+    .closure-reason-group{
+        grid-column:auto;
+    }
+    .closure-list-item{
+        align-items:center;
+    }
+}
+
+@media(max-width:360px){
+    .admin-summary-button span{
+        font-size:10px;
+    }
+    .admin-summary-button small{
+        display:none;
+    }
+    .admin-calendar-day{
+        min-height:46px;
+        padding:5px 2px 13px;
+    }
+}
+
+/* =========================================
+   V6.6.7 사용자·관리자 달력 스타일 통일
+========================================= */
+.admin-calendar-card{padding-bottom:15px;}
+.admin-calendar-header{grid-template-columns:42px 1fr 42px;align-items:center;gap:8px;margin:0 0 10px;}
+.admin-calendar-title{color:#1d2939;font-size:19px;font-weight:700;text-align:center;}
+.admin-calendar-nav{width:42px;height:36px;border:none;border-radius:9px;background:#0b3a82;color:#fff;font-size:24px;line-height:1;}
+.admin-calendar-weekdays{margin-bottom:5px;color:#475467;font-size:12px;font-weight:700;}
+.admin-calendar-weekdays span{padding:5px 0;}
+.admin-calendar-grid{gap:5px;}
+.admin-calendar-day{min-height:48px;padding:5px 3px 13px;border:1px solid #e1e7ef;border-radius:9px;background:#f9fbfd;color:#344054;font-size:13px;font-weight:700;}
+.admin-calendar-day-number{font-size:13px;line-height:1;}
+.admin-calendar-status{left:50%;right:auto;bottom:3px;transform:translateX(-50%);min-height:13px;white-space:nowrap;}
+.admin-calendar-count{min-width:20px;height:13px;padding:0 4px;border-radius:7px;background:#eaf2ff;color:#0b3a82;font-size:8px;font-weight:700;}
+.admin-calendar-closed-label{min-width:26px;height:13px;padding:0 4px;border-radius:7px;font-size:8px;}
+.admin-calendar-day.today{border:2px solid #0b3a82;background:#fff;color:#0b3a82;box-shadow:none;}
+.admin-calendar-day.selected,
+.admin-calendar-day.selected.today{border:2px solid #e27722;background:#fff3e8;color:#7a3100;box-shadow:0 0 0 2px rgba(226,119,34,.13);}
+.admin-calendar-day.selected .admin-calendar-count{background:#e27722;color:#fff;}
+.admin-calendar-day.closed{background:#f2f4f7;color:#667085;}
+.admin-calendar-day.closed.selected{border-color:#e27722;background:#fff3e8;color:#7a3100;}
+@media(max-width:420px){
+    .admin-calendar-header{grid-template-columns:38px 1fr 38px;margin-bottom:8px;}
+    .admin-calendar-title{font-size:17px;}
+    .admin-calendar-nav{width:38px;height:34px;font-size:22px;}
+    .admin-calendar-weekdays span{padding:4px 0;font-size:11px;}
+    .admin-calendar-grid{gap:4px;}
+    .admin-calendar-day{min-height:44px;padding:5px 2px 13px;}
+}
+
+
+/* V6.6.8: 관리자 현황 닫기, 제목 정렬 및 가독성 개선 */
+html{font-size:17px;}
+body{font-size:1rem;}
+.admin-main-header{padding-left:64px;padding-right:64px;}
+.admin-main-title{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:0;
+    margin:0;
+    padding:0 2px;
+    font-size:clamp(18px,5.1vw,22px);
+    line-height:1.28;
+    text-align:center;
+    overflow-wrap:anywhere;
+    word-break:keep-all;
+}
+.admin-section-title{font-size:18px;text-align:center;line-height:1.3;}
+.admin-section-heading .admin-section-title{text-align:left;}
+.admin-input-group label{font-size:14px;}
+.admin-input-group input,.admin-input-group select,.admin-search-row input{font-size:15px;}
+button,.admin-header-button{font-size:14px;}
+.admin-creator{font-size:11px;}
+.admin-list-heading-actions{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap;}
+.admin-status-close-button{
+    min-height:30px;
+    padding:5px 10px;
+    border:1px solid #f79009;
+    border-radius:8px;
+    background:#fff7ed;
+    color:#b54708;
+    font-size:12px;
+    font-weight:800;
+    cursor:pointer;
+}
+.admin-status-close-button:active{transform:scale(.97);}
+@media(max-width:380px){
+    html{font-size:16px;}
+    .admin-main-header{padding-left:56px;padding-right:56px;}
+    .admin-main-title{font-size:clamp(16px,4.8vw,19px);}
+    .admin-section-title{font-size:17px;}
+    .admin-input-group label{font-size:13px;}
+    .admin-input-group input,.admin-input-group select,.admin-search-row input{font-size:14px;}
+    button,.admin-header-button{font-size:12px;}
+    .admin-status-close-button{font-size:11px;padding:4px 8px;}
+}
+
+
+/* =========================================
+   V6.6.9 큰 글씨·한 줄 제목 접근성 개선
+========================================= */
+html{font-size:18px;}
+body{font-size:1.05rem;line-height:1.55;}
+.admin-main-header{
+    min-height:86px;
+    padding:16px 62px 22px 14px;
+}
+.admin-main-title{
+    width:100%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:clip;
+    font-size:clamp(14px,4.2vw,21px);
+    line-height:1.2;
+    letter-spacing:-.55px;
+}
+.admin-section-title{font-size:20px;}
+.admin-input-group label{font-size:15px;}
+.admin-input-group input,.admin-input-group select,.admin-search-row input,.admin-notice-input{font-size:16px;}
+button,.admin-header-button,.admin-filter-button,.admin-search-button,.admin-delete-button{font-size:15px;}
+.admin-reservation-item,.admin-calendar-detail-heading,.closure-item,.admin-notice-row{font-size:1rem;}
+.admin-creator{font-size:12px;}
+@media(max-width:380px){
+    html{font-size:17px;}
+    body{font-size:1rem;}
+    .admin-main-header{min-height:82px;padding-left:52px;padding-right:52px;}
+    .admin-main-title{font-size:clamp(13px,3.9vw,15px);letter-spacing:-.7px;}
+    .admin-section-title{font-size:19px;}
+    .admin-input-group label{font-size:14px;}
+    .admin-input-group input,.admin-input-group select,.admin-search-row input,.admin-notice-input{font-size:15px;}
+    button,.admin-header-button,.admin-filter-button,.admin-search-button,.admin-delete-button{font-size:14px;}
+}
+
+
+/* =========================================
+   V6.7 운영자 편의성 개선
+========================================= */
+.admin-day-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0 10px;}
+.admin-day-summary span{padding:8px 4px;border-radius:9px;background:#f3f7fc;color:#49566a;text-align:center;font-size:13px;white-space:nowrap;}
+.admin-day-summary strong{color:var(--main);font-size:15px;}
+.admin-search-row{grid-template-columns:minmax(0,1fr) 68px 68px !important;}
+.admin-search-reset-button{height:42px;border:1px solid var(--border);border-radius:10px;background:#eef2f7;color:#344054;font-size:14px;font-weight:800;cursor:pointer;}
+.admin-section-toggle{min-width:62px;height:34px;padding:0 10px;border:1px solid var(--border);border-radius:9px;background:#f3f6fa;color:var(--main);font-size:14px;font-weight:800;cursor:pointer;}
+.admin-heading-tools{display:flex;align-items:center;gap:8px;}
+.admin-collapsible-body{padding-top:3px;}
+.admin-scroll-top-button{position:fixed;right:max(16px,calc((100vw - 580px)/2 + 12px));bottom:88px;width:48px;height:48px;border:none;border-radius:50%;background:var(--main);color:#fff;box-shadow:0 5px 18px rgba(11,58,130,.3);font-size:25px;font-weight:900;opacity:0;pointer-events:none;transform:translateY(8px);transition:.18s;z-index:30;}
+.admin-scroll-top-button.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+@media(max-width:420px){
+ .admin-day-summary{grid-template-columns:repeat(2,1fr);}
+ .admin-search-row{grid-template-columns:minmax(0,1fr) 62px 62px !important;gap:6px;}
+ .admin-search-button,.admin-search-reset-button{padding:0 4px;font-size:13px;}
+}
+
+/* V6.7.2: fixed top button clearance for lower controls */
+body{padding-bottom:88px;}
+@media(max-width:420px){.admin-scroll-top-button{bottom:92px;right:18px;}}
+
+/* =========================================
+   V6.7.3 최종 UI 다듬기
+   - 큰 한 줄 제목
+   - 접힌 관리 카드 높이 축소
+   - 맨 위 버튼 하단 빈 공간 배치
+========================================= */
+.admin-main-header{
+    min-height:92px;
+    padding:16px 76px 22px 18px;
+}
+.admin-main-title{
+    font-size:clamp(17px,4.75vw,25px);
+    font-weight:900;
+    letter-spacing:-1.05px;
+    line-height:1.15;
+    white-space:nowrap;
+    overflow:visible;
+    text-overflow:clip;
+}
+.admin-header-button{
+    min-width:58px;
+    height:34px;
+    font-size:15px;
+    font-weight:900;
+}
+.admin-creator{
+    right:12px;
+    bottom:8px;
+    font-size:12px;
+    font-weight:700;
+}
+
+/* 접힌 하단 관리 카드는 한 줄 높이로 정돈 */
+.closure-management-card,
+.notice-management-card{
+    padding:12px 14px;
+}
+.closure-management-card > .admin-section-heading,
+.notice-management-card > .admin-section-heading{
+    min-height:44px;
+    margin:0;
+    align-items:center;
+}
+.closure-management-card .admin-section-title,
+.notice-management-card .admin-section-title{
+    font-size:20px;
+    line-height:1.15;
+}
+.admin-heading-tools{
+    flex-wrap:nowrap;
+    gap:6px;
+}
+.admin-notice-limit{
+    white-space:nowrap;
+    font-size:12px;
+}
+.admin-section-toggle{
+    min-width:64px;
+    height:36px;
+    padding:0 10px;
+    white-space:nowrap;
+}
+.admin-collapsible-body:not(.hidden){
+    padding-top:10px;
+}
+
+/* 버튼이 공지사항 카드와 겹치지 않도록 하단 여백 영역에 배치 */
+.admin-app-container{
+    padding-bottom:110px;
+}
+body{
+    padding-bottom:0;
+}
+.admin-scroll-top-button{
+    right:max(16px,calc((100vw - 580px)/2 + 16px));
+    bottom:18px;
+    width:54px;
+    height:54px;
+    font-size:29px;
+}
+
+@media(max-width:420px){
+    .admin-main-header{
+        min-height:86px;
+        padding:15px 65px 21px 12px;
+    }
+    .admin-main-title{
+        font-size:clamp(15px,4.35vw,18px);
+        letter-spacing:-1px;
+    }
+    .admin-header-button{
+        min-width:54px;
+        height:32px;
+        font-size:14px;
+    }
+    .closure-management-card,
+    .notice-management-card{
+        padding:10px 12px;
+    }
+    .closure-management-card > .admin-section-heading,
+    .notice-management-card > .admin-section-heading{
+        min-height:40px;
+    }
+    .closure-management-card .admin-section-title,
+    .notice-management-card .admin-section-title{
+        font-size:18px;
+    }
+    .admin-notice-limit{
+        font-size:11px;
+    }
+    .admin-section-toggle{
+        min-width:58px;
+        height:34px;
+        padding:0 8px;
+        font-size:13px;
+    }
+    .admin-app-container{
+        padding-bottom:102px;
+    }
+    .admin-scroll-top-button{
+        right:16px;
+        bottom:16px;
+        width:52px;
+        height:52px;
+        font-size:27px;
+    }
+}
+
+@media(max-width:360px){
+    .admin-main-title{
+        font-size:14px;
+        letter-spacing:-1.05px;
+    }
+    .notice-management-card .admin-section-title{
+        font-size:17px;
+    }
+}
